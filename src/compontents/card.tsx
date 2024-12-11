@@ -4,7 +4,6 @@ import Input from './input';
 interface CardProps {
     item: string,
     index?: number,
-    isEditing?: boolean,
     onDelete: () => void,
     onDone?: () => void,
     onEdit?: () => void,
@@ -15,7 +14,7 @@ interface CardProps {
     onKeyDown?: (e: React.KeyboardEvent) => void
 }
 
-const Card: FC<CardProps> = ({ item, index, editIndex, onDelete, onDone, onEdit, editInput, isEditing, handleEditInput, onBlur, onKeyDown }) => {
+const Card: FC<CardProps> = ({ item, index, editIndex, onDelete, onDone, onEdit, editInput, handleEditInput, onBlur, onKeyDown }) => {
 
 
     return (
@@ -26,10 +25,10 @@ const Card: FC<CardProps> = ({ item, index, editIndex, onDelete, onDone, onEdit,
                         <div className="card w-full border-3 border-primary border-opacity-50" style={{ boxShadow: "0px 0px 4px 2px #4699fd40" }}>
                             <div className="card-body">
                                 {
-                                    index===editIndex && isEditing === true ?
+                                    index === editIndex ?
                                         (
                                             <div className='d-flex p-1'>
-                                                <Input type='text' value={editInput} onChange={handleEditInput} onBlur={onBlur} onKeyDown={onKeyDown} />
+                                                <Input type='text' value={editInput} onChange={handleEditInput} onBlur={onBlur} onKeyDown={onKeyDown} autoFocus />
                                             </div>
                                         )
                                         :

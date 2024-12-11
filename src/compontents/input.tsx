@@ -7,6 +7,7 @@ interface InputProps {
   value?: string,
   onBlur?: () => void,
   onKeyDown?: (e: React.KeyboardEvent) => void
+  autoFocus?: boolean
 }
 
 const Input: FC<InputProps> = ({ type, onChange, placeholder, value, ...props }) => {

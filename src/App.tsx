@@ -10,10 +10,9 @@ function App() {
   const [input, setInput] = useState<string>("")
   const [completedTodos, setCompletedTodos] = useState<string[]>([])
   const [isDisabled, setIsDisabled] = useState<boolean>(true)
-  const [editInput, setEditInput] = useState<string>()
 
   const [editIndex, setEditIndex] = useState<number>()
-  const [isEditing, setIsEditing] = useState<boolean>(true)
+  const [editInput, setEditInput] = useState<string>("")
 
   // useEffect(() => {
   //   if (editIndex !== undefined) {
@@ -29,12 +28,14 @@ function App() {
   }
 
   function handleBlur() {
-    setIsEditing(false)
+    setEditIndex(todos.length)
+    setEditInput("")
   }
 
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key === "Enter") {
-      setIsEditing(false)
+      setEditIndex(todos.length)
+      setEditInput("")
     }
   }
 
@@ -84,7 +85,7 @@ function App() {
                 todos.length > 0 ?
                   todos.map((item, index) => (
                     <div className="col-4 p-1">
-                      <Card item={item} index={index} editIndex={editIndex} key={index + "todos"} onDelete={() => handleDelete(index)} onDone={() => handleDone(index)} onEdit={() => handleEdit(index)} editInput={editInput} handleEditInput={handleEditInput} isEditing={isEditing} onBlur={handleBlur} onKeyDown={handleKeyDown} />
+                      <Card item={item} index={index} editIndex={editIndex} key={index + "todos"} onDelete={() => handleDelete(index)} onDone={() => handleDone(index)} onEdit={() => handleEdit(index)} editInput={editInput} handleEditInput={handleEditInput} onBlur={handleBlur} onKeyDown={handleKeyDown} />
                     </div>
                   ))
                   :
