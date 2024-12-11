@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 interface InputProps {
   type: string,
@@ -6,7 +6,7 @@ interface InputProps {
   placeholder?: string,
   value?: string,
   onBlur?: () => void,
-  onKeyDown?: () => void
+  onKeyDown?: (e: React.KeyboardEvent) => void
 }
 
 const Input: FC<InputProps> = ({ type, onChange, placeholder, value, ...props }) => {
