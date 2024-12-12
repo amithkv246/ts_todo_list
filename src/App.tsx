@@ -5,36 +5,40 @@ import Card from "./compontents/card"
 import Button from "./compontents/button"
 
 function App() {
-  // let globalEditInitial: string = ""
   const [todos, setTodos] = useState<string[]>([])
   const [input, setInput] = useState<string>("")
   const [completedTodos, setCompletedTodos] = useState<string[]>([])
   const [isDisabled, setIsDisabled] = useState<boolean>(true)
 
-  const [editIndex, setEditIndex] = useState<number>()
+  const [editIndex, setEditIndex] = useState<number | null>()
   const [editInput, setEditInput] = useState<string>("")
 
-  // useEffect(() => {
-  //   if (editIndex !== undefined) {
-  //     console.log(todos[editIndex]);
-  //     globalEditInitial = todos[editIndex]
-  //   }
-  // }, [editIndex])
+  useEffect(()=>{
+    if (editIndex !== null) {
+      setEditInput(todos[editIndex])
+    }
+  },[editIndex])
 
   const handleEditInput = (e: React.ChangeEvent<HTMLInputElement>) => setEditInput(e.target.value)
+
+  useEffect(()=> {
+    if (editInput !== "") {
+      todos[editIndex]= editInput
+    }
+  },[editInput])
 
   function handleEdit(index: number) {
     setEditIndex(index)
   }
 
   function handleBlur() {
-    setEditIndex(todos.length)
+    setEditIndex(null)
     setEditInput("")
   }
 
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key === "Enter") {
-      setEditIndex(todos.length)
+      setEditIndex(null)
       setEditInput("")
     }
   }
