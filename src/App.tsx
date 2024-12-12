@@ -10,22 +10,22 @@ function App() {
   const [completedTodos, setCompletedTodos] = useState<string[]>([])
   const [isDisabled, setIsDisabled] = useState<boolean>(true)
 
-  const [editIndex, setEditIndex] = useState<number | null>()
+  const [editIndex, setEditIndex] = useState<number | any>()
   const [editInput, setEditInput] = useState<string>("")
 
-  useEffect(()=>{
+  useEffect(() => {
     if (editIndex !== null) {
       setEditInput(todos[editIndex])
     }
-  },[editIndex])
+  }, [editIndex])
 
   const handleEditInput = (e: React.ChangeEvent<HTMLInputElement>) => setEditInput(e.target.value)
 
-  useEffect(()=> {
+  useEffect(() => {
     if (editInput !== "") {
-      todos[editIndex]= editInput
+      todos[editIndex] = editInput
     }
-  },[editInput])
+  }, [editInput])
 
   function handleEdit(index: number) {
     setEditIndex(index)

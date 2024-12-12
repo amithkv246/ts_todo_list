@@ -7,7 +7,7 @@ interface CardProps {
     onDelete: () => void,
     onDone?: () => void,
     onEdit?: () => void,
-    editIndex?: number | null | undefined,
+    editIndex?: number | any,
     editInput?: string,
     handleEditInput?: (e: React.ChangeEvent<HTMLInputElement>) => void
     onBlur?: () => void,
